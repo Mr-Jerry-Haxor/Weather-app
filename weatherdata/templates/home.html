@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Weather App</title>
+	<title>Weather App </title>
 	{% load static %}
     <link rel="stylesheet" href="{% static 'home.css'%}">
 </head>
@@ -11,7 +11,7 @@
         Your browser does not support the video tag.
       </video>
 	<div class="container">
-        <h1 class="heading">Weather App</h1>
+        <h1 class="heading">{{ city }} Weather</h1>
         <div class="search-bar">
             <form class="search-form" action="{% url 'home' %}" method="POST">
 				{% csrf_token %}
