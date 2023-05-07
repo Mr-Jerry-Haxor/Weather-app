@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+	{% load static %}
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="{% static 'backgroundvideo.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+	<div class="container">
+        <h1 class="heading">Weather App</h1>
+        <div class="search-bar">
+            <form class="search-form">
+                <input type="text" placeholder="Enter city name or zip code">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+		<div class="weather-today">
+			<div class="weather-icon"></div>
+			<div class="weather-info">
+				<div class="weather-location">{{ city }}</div>
+				<div class="weather-desc">Weather Description</div>
+				<div class="weather-temp">Temperature</div>
+			</div>
+		</div>
+		<div class="weather-forecast">
+			<h2 class="forecast-heading">Next 5 Days</h2>
+			<ul class="forecast-list">
+				<li>
+					<div class="forecast-date">Date 1</div>
+					<div class="forecast-icon"></div>
+					<div class="forecast-temp">Temperature</div>
+				</li>
+				<li>
+					<div class="forecast-date">Date 2</div>
+					<div class="forecast-icon"></div>
+					<div class="forecast-temp">Temperature</div>
+				</li>
+				<li>
+					<div class="forecast-date">Date 3</div>
+					<div class="forecast-icon"></div>
+					<div class="forecast-temp">Temperature</div>
+				</li>
+				<li>
+					<div class="forecast-date">Date 4</div>
+					<div class="forecast-icon"></div>
+					<div class="forecast-temp">Temperature</div>
+				</li>
+				<li>
+					<div class="forecast-date">Date 5</div>
+					<div class="forecast-icon"></div>
+					<div class="forecast-temp">Temperature</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

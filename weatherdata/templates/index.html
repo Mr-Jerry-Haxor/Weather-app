@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1.0, user-scalable=0 , minimal-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="background">
+        <div class='clouds'>
+            <div class='clouds-1'></div>
+            <div class='clouds-2'></div>
+            <div class='clouds-3'></div>
+        </div>
+    </div>
+    <div class="container">
+        <form action="{% url 'home' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="test" value="hello">
+            <input type="hidden" name="cityname" value="">
+            <button id="findcity">Welcome to Weather App</button>
+        </form>
+    </div>
+    <script>
+        const success = (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
+
+            fetch(geoApiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const city = data.locality;
+                    const citynameInput = document.querySelector('input[name="cityname"]');
+                    citynameInput.value = city +' ' + lat + ' ' + lon ;
+                    const form = document.querySelector('form');
+                    form.submit();
+                })
+                .catch(error => console.log(error));
+        };
+
+        const error = (error) => {
+            console.log(error);
+            const citynameInput = document.querySelector('input[name="cityname"]');
+            citynameInput.value = 'userdenied';
+            const form = document.querySelector('form');
+            form.submit();
+        };
+
+        const findcity = () => {
+            const findcityBtn = document.querySelector('#findcity');
+            findcityBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigator.geolocation.getCurrentPosition(success, error);
+            });
+        };
+
+        findcity();
+    </script>
+</body>
+</html>
