@@ -19,7 +19,6 @@
     <div class="container">
         <form action="{% url 'home' %}" method="POST">
             {% csrf_token %}
-            <input type="hidden" name="test" value="hello">
             <input type="hidden" name="cityname" value="">
             <button id="findcity">Welcome to Weather App</button>
         </form>
